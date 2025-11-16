@@ -1,179 +1,184 @@
-*** 🛍️ Customer Shopping Behavior Analysis
+# 🛍️ **Customer Shopping Behavior Analysis**
 
-A complete end-to-end analytics project uncovering insights from 3,900+ customer transactions using Python, MySQL, and Power BI.
+A complete end-to-end analytics project uncovering insights from **3,900+ customer transactions** using **Python**, **MySQL**, and **Power BI**.
 
 ---
 
-*** 📌 Project Overview
+## 📌 **Project Overview**
+This project analyzes customer shopping behavior to uncover:
 
-This project analyzes customer shopping patterns to understand:
+- **Spending patterns**  
+- **Product preferences**  
+- **Customer segmentation**  
+- **Subscription impacts**  
 
-Spending behavior
+These insights help businesses refine **marketing strategy**, **pricing**, **inventory decisions**, and **customer retention programs**.
 
-Product preferences
+---
 
-Customer segmentation
+## 📂 **Dataset Summary**
+- **Rows:** 3,900  
+- **Columns:** 18  
 
-Subscription trends
+### **Data Includes**
+- **Demographics:** Age, Gender, Location, Subscription  
+- **Purchase Details:** Item, Category, Amount, Season, Size, Color  
+- **Behavior:** Discount usage, Promo Code, Review Rating, Previous Purchases, Shipping Type  
 
-The insights help businesses optimize marketing strategy, pricing, product positioning, and customer retention.
+### **Missing Data**
+- 37 missing values in `review_rating` → handled using **category-wise median**
 
-📂 Dataset Summary
+---
 
-Rows: 3,900
+## 🧹 **Exploratory Data Analysis (Python)**
 
-Columns: 18
+### ✔️ **Data Preparation**
+- Loaded dataset using **Pandas**
+- Used `df.info()` and `df.describe()` for structure & statistical summary
 
-Data Fields Include
+### ✔️ **Missing Value Handling**
+- Imputed missing **review_rating** using **median per product category**
 
-Demographics: Age, Gender, Location, Subscription status
+### ✔️ **Feature Engineering**
+- Created **age_group** by binning age  
+- Created **purchase_frequency_days**  
+- Converted all column names to **snake_case**  
+- Removed redundant `promo_code_used` column  
 
-Purchase Details: Item, Category, Amount, Season, Size, Color
+### ✔️ **Database Integration**
+- Loaded cleaned DataFrame into **PostgreSQL** for deeper SQL-based analysis  
 
-Behavior: Discount usage, Promo Code, Previous Purchases, Review Rating, Shipping Type
+---
 
-Missing Values
+## 🧮 **SQL Analysis (PostgreSQL)**
 
-37 missing values in review_rating → handled using median per category
+### **1️⃣ Revenue by Gender**
+| **Gender** | **Revenue** |
+|-----------|-------------|
+| Female    | **$75,191** |
+| Male      | **$157,890** |
 
-🧹 Exploratory Data Analysis (Python)
-✔️ Data Preparation
+---
 
-Loaded dataset using Pandas
+### **2️⃣ High-Spending Discount Users**
+- **839 customers** used discounts but still spent **more than the average purchase amount**.
 
-Summarized structure with df.info() and df.describe()
+---
 
-✔️ Missing Value Treatment
+### **3️⃣ Top 5 Highest-Rated Products**
+1. **Gloves — 3.86**  
+2. **Sandals — 3.84**  
+3. **Boots — 3.82**  
+4. **Hat — 3.80**  
+5. **Skirt — 3.78**
 
-Imputed missing review_rating using category-wise median
+---
 
-✔️ Feature Engineering
+### **4️⃣ Shipping Type Comparison**
+| **Shipping Type** | **Avg Spend** |
+|-------------------|---------------|
+| Standard          | **$58.46**    |
+| Express           | **$60.48**    |
 
-Created age_group (binned ages)
+---
 
-Created purchase_frequency_days
+### **5️⃣ Subscription Insights**
+| **Subscription** | **Customers** | **Avg Spend** | **Total Revenue** |
+|------------------|----------------|----------------|-------------------|
+| Yes              | 1053           | 59.49          | 62,645            |
+| No               | 2847           | 59.87          | 170,436           |
 
-Converted all column names to snake_case
+📌 **Non-subscribers generate higher total revenue.**
 
-Dropped redundant column promo_code_used after consistency check
+---
 
-✔️ Database Integration
+### **6️⃣ Discount-Dependent Products**
+Products where **47%+ customers use discounts**:
+- **Hat**
+- **Sneakers**
+- **Coat**
+- **Sweater**
+- **Pants**
 
-Exported cleaned dataset to PostgreSQL for SQL analysis
+---
 
-🧮 SQL Analysis (PostgreSQL)
-1️⃣ Revenue by Gender
-Gender	Revenue
-Female	$75,191
-Male	$157,890
-2️⃣ High-Spending Discount Users
+### **7️⃣ Customer Segmentation**
+- **Loyal Customers:** 3,116  
+- **Returning Customers:** 701  
+- **New Customers:** 83  
 
-Identified 839 customers who used a discount but still spent above the average amount.
+---
 
-3️⃣ Top 5 Products by Review Rating
+### **8️⃣ Top 3 Products by Category**
+- **Accessories:** Jewelry, Sunglasses, Belt  
+- **Clothing:** Blouse, Pants, Shirt  
+- **Footwear:** Sandals, Shoes, Sneakers  
+- **Outerwear:** Jacket, Coat  
 
-Gloves — 3.86
+---
 
-Sandals — 3.84
+### **9️⃣ Repeat Buyers & Subscription**
+Customers with **more than 5 purchases**:
+- **Non-subscribers:** 2,518  
+- **Subscribers:** 958
 
-Boots — 3.82
+---
 
-Hat — 3.80
+### **🔟 Revenue by Age Group**
+- Visualized using **Power BI dashboard**
 
-Skirt — 3.78
+---
 
-4️⃣ Shipping Type Comparison
-Shipping Type	Avg Spend
-Standard	$58.46
-Express	$60.48
-5️⃣ Subscription Insights
-Subscription	Customers	Avg Spend	Total Revenue
-Yes	1053	59.49	62,645
-No	2847	59.87	170,436
+## 📊 **Power BI Dashboard**
+The dashboard includes interactive visuals for:
 
-📌 Non-subscribers generate more total revenue.
+- Revenue trends  
+- Age-group performance  
+- Product category insights  
+- Subscription impact  
+- Shipping type comparison  
+- Customer segmentation  
 
-6️⃣ Discount-Dependent Products
+---
 
-Top categories where >47% purchases involve discounts:
+## 📈 **Business Recommendations**
+✔️ **Promote subscriptions** through exclusive benefits  
+✔️ **Strengthen loyalty programs** for returning customers  
+✔️ **Optimize discount policies** to avoid margin losses  
+✔️ **Highlight best-performing products** in campaigns  
+✔️ **Target high-revenue age groups** with focused marketing  
 
-Hat
+---
 
-Sneakers
+## 🛠️ **Tech Stack**
+- **Python:** Pandas, NumPy  
+- **SQL:** PostgreSQL  
+- **Visualization:** Power BI  
+- **Notebook:** Jupyter Notebook  
 
-Coat
+---
 
-Sweater
+## 🚀 **How to Use**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/YourUsername/Customer-Shopping-Behavior-Analysis.git
 
-Pants
+---
 
-7️⃣ Customer Segmentation
+# ***👨‍💻 Author***
 
-Loyal Customers: 3,116
+**Md Shah Alam**  
+Data Analyst | SQL • Python • Power BI • Excel  
 
-Returning Customers: 701
+📧 Email: **mdshahalam906565@gmail.com**  
 
-New Customers: 83
+🔗 GitHub: **https://github.com/MdShahAlamDA**  
 
-8️⃣ Top 3 Products per Category
+🔗 LinkedIn: **https://www.linkedin.com/in/md-shah-alam-671602343/**  
 
-Accessories: Jewelry, Sunglasses, Belt
+*Passionate about turning raw data into meaningful insights and business value.*
 
-Clothing: Blouse, Pants, Shirt
+---
 
-Footwear: Sandals, Shoes, Sneakers
+⭐ **If you found this project helpful, don’t forget to give it a star on GitHub!**
 
-Outerwear: Jacket, Coat
-
-9️⃣ Repeat Buyers & Subscription
-
-Customers with more than 5 purchases:
-
-No subscription: 2,518
-
-Subscribed: 958
-
-🔟 Revenue by Age Group
-
-Visualized using Power BI dashboard
-
-📊 Power BI Dashboard
-
-Interactive dashboard includes:
-
-Revenue trends
-
-Age-group contribution
-
-Product popularity
-
-Subscription impact
-
-Shipping type comparison
-
-Customer segmentation
-
-📈 Business Recommendations
-
-✔️ Boost Subscriptions through exclusive benefits
-✔️ Strengthen Loyalty Programs for repeat customers
-✔️ Review Discount Strategy to protect margins
-✔️ Improve Product Positioning for top-rated items
-✔️ Target High-Revenue Age Groups with focused marketing
-
-🛠️ Tech Stack
-
-Python (Pandas, NumPy)
-
-PostgreSQL
-
-Power BI
-
-Jupyter Notebook
-
-If you want, I can also add:
-
-✅ Project folder structure
-✅ Badges (Python version, SQL, Power BI, Dataset Size)
-✅ Code snippets for EDA and SQL
-✅ Project banner for GitHub
