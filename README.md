@@ -50,7 +50,7 @@ These insights help businesses refine **marketing strategy**, **pricing**, **inv
 
 ---
 
-## 🧮 **SQL Analysis (PostgreSQL)**
+## 🧮 **SQL Analysis (MySQL)**
 
 ### **1️⃣ Revenue by Gender**
 | **Gender** | **Revenue** |
